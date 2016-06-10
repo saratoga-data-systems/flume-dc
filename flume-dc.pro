@@ -11,8 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = flume_dc
 TEMPLATE = app
-INCLUDEPATH += "C:\Users\ormris\Documents\GitHub\libssh2\include"
-LIBPATH += "C:\Users\ormris\Documents\GitHub\libssh2\src\Debug"
+INCLUDEPATH += "C:\Users\ormris\Documents\libssh2\include"
+LIBPATH += "C:\Users\ormris\Documents\libssh2\src\Debug"
 LIBPATH += "C:\Users\ormris\Documents\openssl\OpenSSL_1_0_1h-install-msvc1800-64-\lib"
 LIBPATH += "C:\Users\ormris\Documents\qt-everywhere-opensource-src-5.6.0\qtbase\lib"
 LIBS += ws2_32.lib libeay32.lib ssleay32.lib libssh2.lib Crypt32.lib
