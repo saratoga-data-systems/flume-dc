@@ -11,11 +11,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = flume_single_gui
 TEMPLATE = app
-INCLUDEPATH += "C:\Users\ormris\Documents\Source\libssh2-master\include"
-LIBPATH += "C:\Users\ormris\Documents\Source\libssh2-master\src\Debug"
-LIBPATH += "C:\Users\ormris\Documents\Source\openssl-build\OpenSSL_1_0_1h-install-msvc1800-64\Release\lib"
-LIBPATH += "C:\Users\ormris\Documents\Source\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib"
-LIBS += ws2_32.lib libeay32.lib ssleay32.lib libssh2.lib
+INCLUDEPATH += "C:\Users\ormris\Documents\libssh2\include"
+LIBPATH += "C:\Users\ormris\Documents\libssh2\src\Debug"
+LIBPATH += "C:\Users\ormris\Documents\openssl\OpenSSL_1_0_1h-install-msvc1800-64-\lib"
+LIBPATH += "C:\Users\ormris\Documents\qt-everywhere-opensource-src-5.6.0\qtbase\lib"
+LIBS += ws2_32.lib libeay32.lib ssleay32.lib libssh2.lib Crypt32.lib
 win32: RC_ICONS += favicon.ico
 
 SOURCES += main.cpp\
