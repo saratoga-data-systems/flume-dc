@@ -199,7 +199,7 @@ MainWindow::sendAll()
 
     if (ui->comboBox->currentText() == "") {
         QMessageBox qm;
-        qm.setText("Please add to the target list.");
+        qm.setText("Please add to the destination list.");
         qm.setWindowTitle("Alert");
         qm.exec();
 
