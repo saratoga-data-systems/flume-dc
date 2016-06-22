@@ -163,7 +163,6 @@
      <string>Edit</string>
     </property>
     <addaction name="actionEdit_Target_List"/>
-    <addaction name="actionOptions"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -208,25 +207,12 @@
     <string>Ctrl+T</string>
    </property>
   </action>
-  <action name="actionOptions">
-   <property name="text">
-    <string>Sender Options...</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+L</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About....</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
-   </property>
-  </action>
-  <action name="actionEdit_Destination_Logins">
-   <property name="text">
-    <string>Edit Destination Logins...</string>
    </property>
   </action>
   <action name="actionLoad_Destinations">

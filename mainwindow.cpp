@@ -43,9 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionChoose, SIGNAL(triggered()), this, SLOT(addFile()));
     connect(ui->actionQuit, SIGNAL(triggered()), this, SLOT(close()));
     connect(ui->actionSend, SIGNAL(triggered()), this, SLOT(sendAll()));
-    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(editProxyOptions()));
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAbout()));
-    connect(ui->actionEdit_Destination_Logins, SIGNAL(triggered()), this, SLOT(editDestLogins()));
+
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(sendAll()));
     connect(ui->actionEdit_Target_List, &QAction::triggered, this, &MainWindow::editTargetList);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::editTargetList);
