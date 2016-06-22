@@ -12,7 +12,7 @@ ServerDialog::ServerDialog(QWidget *parent, int index) :
     connect(ui->pushButton_2, &QPushButton::clicked, this, &ServerDialog::addTarget);
 
     QStringList servers = prefs->childGroups();
-    qDebug() << servers;
+    qDebug() << "with tabs: " << servers;
 
     for (int i = 0; i < servers.size(); i++) {
         if (servers[i] != "General") {

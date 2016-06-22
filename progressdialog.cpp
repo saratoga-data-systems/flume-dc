@@ -75,17 +75,23 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
     connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
-
+    connect(this, &ProgressDialog::rejected, this, &ProgressDialog::stop);
     fp->setEnvironment(env.toStringList());
     fp->start("C:\\WINDOWS\\System32\\cmd.exe", args);
     qDebug() << args;
 
     //socketConnect();
 }
+void ProgressDialog::stop() {
+    fp->kill();
+    returnCode = 200;
+    close();
+}
 
 ProgressDialog::~ProgressDialog()
 {
     //sshDisconnect();
+    fp->kill();
     delete ui;
 }
 

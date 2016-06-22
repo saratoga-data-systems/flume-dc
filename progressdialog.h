@@ -43,6 +43,7 @@ private:
     void transferConfig();
     void startFileTransfer();
     void sshDisconnect();
+    void stop();
     QString fileName;
     QString serverName;
     QProcess *fp;
