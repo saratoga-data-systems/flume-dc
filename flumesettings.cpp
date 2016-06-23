@@ -23,7 +23,7 @@ FlumeSettings::FlumeSettings(QWidget *parent, QString name) :
     ui->allowFileNameEdit_2->setText(prefs->value(name + "/allowFileName","/etc/flume/allow").toString());
     ui->checksumSpecEdit_2->setText(prefs->value(name + "/checksumSpec", "Fletcher32").toString());
     ui->compressionLevelEdit->setText(prefs->value(name + "/compressionLevel", "0").toString());
-    ui->compressionStrategyEdit_2->setText(prefs->value(name + "/compressionStrategy", "default").toString());
+    ui->compressionStrategyEdit_2->setText(prefs->value(name + "/compressionStrategy", "0").toString());
     ui->debugEdit->setText(prefs->value(name + "/debug", "0").toString());
     ui->derivativePidFactorEdit_2->setText(prefs->value(name + "/derivativePIDfactor", "0.050000").toString());
     ui->flexlmLicenseDirectoryEdit_2->setText(prefs->value(name + "/flexlmLicenseDirectory", "/etc/flume/license").toString());
@@ -42,7 +42,7 @@ FlumeSettings::FlumeSettings(QWidget *parent, QString name) :
     ui->speedMinimumEdit_2->setText(prefs->value(name + "/speedMinimum", "0.000000").toString());
     ui->runDirectoryEdit_2->setText(prefs->value(name + "/runDirectory", "/var/run/flume").toString());
     ui->remoteBinDirFromLocalEdit_2->setText(prefs->value(name + "/remoteBinDirFromLocal","false").toString());
-    ui->summonTimeoutThresholdEdit_2->setText(prefs->value(name + "/summonTimeoutThreshold", "0.000000").toString());
+    ui->summonTimeoutThresholdEdit_2->setText(prefs->value(name + "/summonTimeoutThreshold", "0").toString());
     ui->speedMaximumEdit->setText(prefs->value(name + "/speedMaximum", "60.00000").toString());
     ui->summonPortDefaultEdit_2->setText(prefs->value(name + "/summonPortDefault", "22").toString());
     ui->recurseEdit->setText(prefs->value(name + "/recurse","false").toString());
@@ -80,7 +80,7 @@ FlumeSettings::reset()
     ui->allowFileNameEdit_2->setText("/etc/flume/allow");
     ui->checksumSpecEdit_2->setText("Fletcher32");
     ui->compressionLevelEdit->setText("0");
-    ui->compressionStrategyEdit_2->setText("default");
+    ui->compressionStrategyEdit_2->setText("0");
     ui->debugEdit->setText("0");
     ui->derivativePidFactorEdit_2->setText("0.050000");
     ui->flexlmLicenseDirectoryEdit_2->setText("/etc/flume/license");
@@ -99,7 +99,7 @@ FlumeSettings::reset()
     ui->speedMinimumEdit_2->setText("0.000000");
     ui->runDirectoryEdit_2->setText("/var/run/flume");
     ui->remoteBinDirFromLocalEdit_2->setText("false");
-    ui->summonTimeoutThresholdEdit_2->setText("0.000000");
+    ui->summonTimeoutThresholdEdit_2->setText("0");
     ui->speedMaximumEdit->setText("60.00000");
     ui->summonPortDefaultEdit_2->setText("22");
     ui->recurseEdit->setText("false");

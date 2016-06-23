@@ -142,7 +142,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Copyright 2016 Saratoga Data Systems</string>
+        <string>Copyright 2016 Saratoga Data Systems, Inc.</string>
        </property>
       </widget>
      </item>
