@@ -58,8 +58,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     QStringList args;
 
-    args << "/c" << "flume.exe" << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
-
+    args << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.insert("PATH", "C:\\bin\\");
@@ -75,14 +74,15 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
     connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
-    connect(this, &ProgressDialog::rejected, this, &ProgressDialog::stop);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ProgressDialog::stop);
     fp->setEnvironment(env.toStringList());
-    fp->start("C:\\WINDOWS\\System32\\cmd.exe", args);
+    fp->start("C:\\bin\\flume.exe", args);
     qDebug() << args;
 
     //socketConnect();
 }
 void ProgressDialog::stop() {
+    qDebug() << "Flume process stopped";
     fp->kill();
     returnCode = 200;
     close();
@@ -91,7 +91,6 @@ void ProgressDialog::stop() {
 ProgressDialog::~ProgressDialog()
 {
     //sshDisconnect();
-    fp->kill();
     delete ui;
 }
 

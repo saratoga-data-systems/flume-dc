@@ -58,7 +58,7 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
 
     QStringList args;
 
-    args << "/c" << "flume_validate.exe" << "-f" << flumeConfigPath.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString();
+    args << "-f" << flumeConfigPath.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString();
 
     qDebug() << args;
 
@@ -66,7 +66,7 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
     env.insert("PATH", "C:\\bin\\");
 
     fp->setEnvironment(env.toStringList());
-    fp->start("C:\\WINDOWS\\System32\\cmd.exe", args);
+    fp->start("C:\\bin\\flume_validate.exe", args);
 }
 
 VerifyProgress::~VerifyProgress()
