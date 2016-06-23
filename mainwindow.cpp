@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    qDebug() << "Flume DC 0.1";
+    qDebug() << "(C) Saratoga Data 2013-2016 All Rights Reserved";
+
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     prefs = new QSettings(appDataPath + "/flumeGuiConfig.ini", QSettings::IniFormat);
 
@@ -36,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton->setEnabled(false);
 
     ui->listView->setModel(fileModel);
+    ui->listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     selModel = ui->listView->selectionModel();
 
@@ -55,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    qDebug() << "bye";
     prefs->sync();
 
     delete ui;
@@ -94,7 +99,7 @@ void
 MainWindow::loadConfigFile(QString file)
 {
     QSettings loader(file, QSettings::IniFormat);
-
+    qDebug() << "Loading configuration...";
     foreach(const QString &group, loader.childGroups()) {
         loader.beginGroup(group);
 
@@ -107,6 +112,7 @@ MainWindow::loadConfigFile(QString file)
 
         loader.endGroup();
     }
+    qDebug() << "Configuration complete.";
 }
 
 
@@ -131,6 +137,7 @@ MainWindow::loadConfig()
     QStringList files = QFileDialog::getOpenFileNames(this, tr("Add File"), documentPath, tr("*.ini"));
 
     for (int i = 0; i < files.length(); i++) {
+        qDebug() << "Loading custom configuration file: " << files.at(i);
         loadConfigFile(files.at(i));
     }
     updateTargetList();
@@ -143,6 +150,7 @@ MainWindow::addFile()
     QString documentPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     QStringList files = QFileDialog::getOpenFileNames(this, tr("Add File"), documentPath, tr("*"));
 
+    qDebug() << "Loading files: " << files;
     for (int i = 0; i < files.size(); i++) {
         QList<QStandardItem*> row;
         row.append(new QStandardItem(files[i]));
@@ -206,15 +214,16 @@ MainWindow::sendAll()
         return;
     }
 
-    qDebug() << files;
+    qDebug() << "Sending files: " << files;
 
     ProgressDialog pd(this, ui->comboBox->currentText(), files[0]);
 
     pd.exec();
 
+    qDebug() << "Transfer attempt complete.";
 
-    QDateTime dt(QDateTime::currentDateTime());
-    fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[2], QVariant(dt.toString()));
+    QDateTime dt(QDateTime::currentDateTime().toUTC());
+    fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[2], QVariant(dt.toString("yyyy-MM-dd hh:mm Z")));
     if (pd.returnValue() >= 200) {
         fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[1], QVariant("FAILED"));
     } else {
