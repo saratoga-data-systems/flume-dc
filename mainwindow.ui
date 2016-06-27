@@ -150,7 +150,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionChoose"/>
     <addaction name="actionSend"/>
@@ -160,13 +160,13 @@
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>&amp;Edit</string>
     </property>
     <addaction name="actionEdit_Target_List"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
@@ -177,7 +177,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionChoose">
    <property name="text">
-    <string>Open File...</string>
+    <string>&amp;Open File...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -185,7 +185,7 @@
   </action>
   <action name="actionSend">
    <property name="text">
-    <string>Send...</string>
+    <string>&amp;Send...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Return</string>
@@ -193,7 +193,7 @@
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Quit...</string>
+    <string>&amp;Quit...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -201,7 +201,7 @@
   </action>
   <action name="actionEdit_Target_List">
    <property name="text">
-    <string>Edit Destination List...</string>
+    <string>Edit &amp;Destination List...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
@@ -209,7 +209,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About....</string>
+    <string>&amp;About....</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -217,7 +217,7 @@
   </action>
   <action name="actionLoad_Destinations">
    <property name="text">
-    <string>Load Destinations...</string>
+    <string>&amp;Load Destinations...</string>
    </property>
   </action>
  </widget>
