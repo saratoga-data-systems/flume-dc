@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 3.6.1, 2016-06-21T13:36:04. -->
+<!-- Written by QtCreator 3.6.1, 2016-06-29T10:31:42. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
   <value type="QByteArray">{25629149-b7fb-40fb-a315-ddc368a434ce}</value>
-=======
-<!-- Written by QtCreator 3.6.1, 2016-06-10T15:27:20. -->
-<qtcreator>
- <data>
-  <variable>EnvironmentId</variable>
-  <value type="QByteArray">{39f62dc9-d66e-4f70-8db4-2e134d28bcb7}</value>
->>>>>>> origin/master
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -66,24 +58,14 @@
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
-<<<<<<< HEAD
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Static Qt</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Static Qt</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{904e6c1b-fa47-46d7-9107-3279eb5affbd}</value>
-=======
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt Static</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt Static</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{ed78797f-5458-4320-b8c3-02b1af140825}</value>
->>>>>>> origin/master
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/GitHub/build-flume-dc-Static_Qt-Debug</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/GitHub/build-flume-dc-Desktop_Qt_Static-Debug</value>
->>>>>>> origin/master
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -137,11 +119,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/GitHub/build-flume-dc-Static_Qt-Release</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/GitHub/build-flume-dc-Desktop_Qt_Static-Release</value>
->>>>>>> origin/master
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -195,11 +173,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/GitHub/build-flume-dc-Static_Qt-Profile</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/ormris/Documents/build-flume-dc-QT_Desktop_Static-Profile</value>
->>>>>>> origin/master
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -310,11 +284,7 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">flume-dc</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/ormris/Documents/GitHub/flume-dc/flume-dc.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/ormris/Documents/flume-dc/flume-dc.pro</value>
->>>>>>> origin/master
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">flume-dc.pro</value>

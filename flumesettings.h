@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QSettings>
 #include <QPushButton>
+#include <QValidator>
 
 #include "sshprogress.h"
 #include "verifyprogress.h"
