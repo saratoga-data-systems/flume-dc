@@ -88,14 +88,6 @@ MainWindow::editProxyOptions()
 }
 
 void
-MainWindow::editDestLogins()
-{
-   sshconfig sc;
-
-   sc.exec();
-}
-
-void
 MainWindow::loadConfigFile(QString file)
 {
     QSettings loader(file, QSettings::IniFormat);

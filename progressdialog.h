@@ -10,12 +10,9 @@
 #include <QThread>
 #include <QStandardPaths>
 #include <QFile>
+#include <QFile>
 #include <string>
 #include <cstring>
-
-#include "configtransfer.h"
-#include "filetransfer.h"
-#include "sshconnect.h"
 
 namespace Ui {
 class ProgressDialog;
@@ -32,7 +29,6 @@ public:
 public slots:
     void increment();
     void fileError(QString signal);
-    void transferFinished();
     void printOutput();
     void directFinished(int code, QProcess::ExitStatus exit);
     int returnValue();
@@ -43,6 +39,7 @@ private:
     void transferConfig();
     void startFileTransfer();
     void sshDisconnect();
+    void stopError(QProcess::ProcessError e);
     void stop();
     QString fileName;
     QString serverName;

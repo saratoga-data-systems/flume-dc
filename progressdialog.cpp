@@ -1,8 +1,6 @@
 #include "progressdialog.h"
 #include "ui_progressdialog.h"
 
-LIBSSH2_SESSION *session;
-int sock;
 extern QSettings *prefs;
 
 ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
@@ -75,12 +73,19 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
     connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ProgressDialog::stop);
-    fp->setEnvironment(env.toStringList());
-    fp->start("C:\\bin\\flume.exe", args);
-    qDebug() << args;
 
-    //socketConnect();
+    fp->setEnvironment(env.toStringList());
+    connect(fp, &QProcess::errorOccurred, this, &ProgressDialog::stopError);
+    fp->start("C:\\bin\\flume.exe", args);
 }
+
+void ProgressDialog::stopError(QProcess::ProcessError e) {
+    QMessageBox msg;
+    msg.setText("An Error Occured");
+    msg.exec();
+    close();
+}
+
 void ProgressDialog::stop() {
     qDebug() << "Flume process stopped";
     fp->kill();
@@ -130,80 +135,6 @@ ProgressDialog::directFinished(int code, QProcess::ExitStatus exit)
 }
 
 void
-ProgressDialog::socketConnect()
-{
-    if (err != 0) {
-        return;
-    }
-
-    QThread *th = new QThread(this);
-    SshConnect *sc = new SshConnect(0, prefs->value("proxyHostname", "localhost").toString(), prefs->value("proxyPort", "22").toString());
-
-    sc->moveToThread(th);
-
-    connect(th, &QThread::started, sc, &SshConnect::begin);
-    connect(sc, &SshConnect::error, this, &ProgressDialog::fileError);
-    connect(sc, &SshConnect::beat, this, &ProgressDialog::increment);
-    connect(sc, &SshConnect::finished, this, &ProgressDialog::transferConfig);
-
-    th->start();
-}
-
-void
-ProgressDialog::transferConfig()
-{
-    if (err != 0) {
-        return;
-    }
-
-    qDebug() << "Transfering configuration for server" << serverName;
-    ConfigTransfer *ct = new ConfigTransfer(serverName);
-    QThread *th = new QThread;
-
-    ct->moveToThread(th);
-
-    connect(th, &QThread::started, ct, &ConfigTransfer::begin);
-    connect(ct, &ConfigTransfer::error, this, &ProgressDialog::fileError);
-    connect(ct, &ConfigTransfer::finishing, this, &ProgressDialog::startFileTransfer);
-    connect(ct, &ConfigTransfer::beat, this, &ProgressDialog::increment);
-
-    th->start();
-}
-
-void
-ProgressDialog::transferFinished()
-{
-    QMessageBox s;
-    s.setText("File transfer succeded");
-    s.setWindowTitle("Success");
-    s.exec();
-
-    close();
-}
-
-void
-ProgressDialog::startFileTransfer()
-{
-    if (err != 0) {
-        return;
-    }
-
-    qDebug() << "Transfering File: " << fileName;
-
-    FileTransfer *ft = new FileTransfer(NULL, fileName, serverName);
-    QThread *th = new QThread;
-
-    ft->moveToThread(th);
-
-    connect(th, &QThread::started, ft, &FileTransfer::begin);
-    connect(ft, &FileTransfer::beat, this, &ProgressDialog::increment);
-    connect(ft, &FileTransfer::error, this, &ProgressDialog::fileError);
-    connect(ft, &FileTransfer::finished, this, &ProgressDialog::transferFinished);
-
-    th->start();
-}
-
-void
 ProgressDialog::fileError(QString signal)
 {
     err = 1;
@@ -217,20 +148,4 @@ void
 ProgressDialog::increment()
 {
     ui->progressBar->setValue(ui->progressBar->value() + 1);
-}
-
-void
-ProgressDialog::sshDisconnect()
-{
-    qDebug() << "Disconnecting";
-
-    libssh2_session_disconnect(session, "So long, and thanks for all the fish!");
-
-    libssh2_session_free(session);
-
-    libssh2_exit();
-
-    closesocket(sock);
-
-    WSACleanup();
 }

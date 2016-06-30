@@ -7,7 +7,6 @@
 #include <QPushButton>
 #include <QValidator>
 
-#include "sshprogress.h"
 #include "verifyprogress.h"
 
 namespace Ui {
