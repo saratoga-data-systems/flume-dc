@@ -184,6 +184,13 @@ MainWindow::removeFile()
 void
 MainWindow::sendAll()
 {
+    if (!QFile::exists("C:\\bin\\flume.exe")) {
+        QMessageBox msg;
+        msg.setText("Please install Flume, then retry the transfer.");
+        msg.setWindowTitle("Flume DC Error");
+        msg.exec();
+        return;
+    }
     QStringList files;
 
     files.append(fileModel->itemFromIndex(ui->listView->selectionModel()->selectedIndexes()[0])->text());

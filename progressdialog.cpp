@@ -15,6 +15,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     ui->progressBar->setValue(0);
 
     err = 0;
+    killAll = 0;
 
     fp = new QProcess;
 
@@ -75,15 +76,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ProgressDialog::stop);
 
     fp->setEnvironment(env.toStringList());
-    connect(fp, &QProcess::errorOccurred, this, &ProgressDialog::stopError);
     fp->start("C:\\bin\\flume.exe", args);
-}
-
-void ProgressDialog::stopError(QProcess::ProcessError e) {
-    QMessageBox msg;
-    msg.setText("An Error Occured");
-    msg.exec();
-    close();
 }
 
 void ProgressDialog::stop() {
@@ -95,7 +88,6 @@ void ProgressDialog::stop() {
 
 ProgressDialog::~ProgressDialog()
 {
-    //sshDisconnect();
     delete ui;
 }
 

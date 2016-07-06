@@ -13,6 +13,7 @@
 #include <QFile>
 #include <string>
 #include <cstring>
+#include <QShowEvent>
 
 namespace Ui {
 class ProgressDialog;
@@ -34,12 +35,14 @@ public slots:
     int returnValue();
 
 private:
+    int killAll;
     Ui::ProgressDialog *ui;
     void socketConnect();
     void transferConfig();
     void startFileTransfer();
     void sshDisconnect();
     void stopError(QProcess::ProcessError e);
+    void ensurePolished(QShowEvent *e);
     void stop();
     QString fileName;
     QString serverName;

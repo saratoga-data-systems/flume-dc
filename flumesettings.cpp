@@ -155,6 +155,13 @@ FlumeSettings::emitRemove()
 void
 FlumeSettings::verifyServer()
 {
+    if (!QFile::exists("C:\\bin\\flume_validate.exe")) {
+        QMessageBox msg;
+        msg.setWindowTitle("Flume DC Error");
+        msg.setText("Please install Flume and try again.");
+        msg.exec();
+        return;
+    }
     VerifyProgress *vp = new VerifyProgress(NULL, serverName);
     connect(vp, &VerifyProgress::invalid, this, &FlumeSettings::invalidate);
     ui->verifyLabel->setText("Valid");
