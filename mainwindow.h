@@ -17,7 +17,6 @@
 #include "serverdialog.h"
 #include "configdialog.h"
 #include "aboutdialog.h"
-#include "sshconfig.h"
 
 namespace Ui {
 class MainWindow;
@@ -46,7 +45,6 @@ public slots:
     void editTargetList();
     void editProxyOptions();
     void showAbout();
-    void editDestLogins();
     void loadConfig();
     void ungrey(const QModelIndex &current, const QModelIndex &previous);
 };

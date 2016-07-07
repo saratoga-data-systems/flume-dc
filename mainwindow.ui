@@ -89,8 +89,20 @@
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::DragDrop</enum>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
       <property name="indentation">
        <number>0</number>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
       </property>
       <property name="headerHidden">
        <bool>false</bool>
@@ -150,7 +162,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionChoose"/>
     <addaction name="actionSend"/>
@@ -160,14 +172,13 @@
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>&amp;Edit</string>
     </property>
     <addaction name="actionEdit_Target_List"/>
-    <addaction name="actionOptions"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
@@ -178,7 +189,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionChoose">
    <property name="text">
-    <string>Open File...</string>
+    <string>&amp;Open File...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -186,7 +197,7 @@
   </action>
   <action name="actionSend">
    <property name="text">
-    <string>Send...</string>
+    <string>&amp;Send...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Return</string>
@@ -194,7 +205,7 @@
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Quit...</string>
+    <string>&amp;Quit...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -202,36 +213,23 @@
   </action>
   <action name="actionEdit_Target_List">
    <property name="text">
-    <string>Edit Destination List...</string>
+    <string>Edit &amp;Destination List...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
    </property>
   </action>
-  <action name="actionOptions">
-   <property name="text">
-    <string>Sender Options...</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+L</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About....</string>
+    <string>&amp;About....</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="actionEdit_Destination_Logins">
-   <property name="text">
-    <string>Edit Destination Logins...</string>
-   </property>
-  </action>
   <action name="actionLoad_Destinations">
    <property name="text">
-    <string>Load Destinations...</string>
+    <string>&amp;Load Destinations...</string>
    </property>
   </action>
  </widget>

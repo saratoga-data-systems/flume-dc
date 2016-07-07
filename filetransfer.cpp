@@ -14,7 +14,7 @@ FileTransfer::begin()
 {
     emit beginning();
 
-    qDebug() << "Transfering file" << fileName << "to target " << serverName;
+    qDebug() << "Transfering file" << fileName << "to destination " << serverName;
 
     LIBSSH2_CHANNEL *channel;
 

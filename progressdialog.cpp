@@ -1,8 +1,6 @@
 #include "progressdialog.h"
 #include "ui_progressdialog.h"
 
-LIBSSH2_SESSION *session;
-int sock;
 extern QSettings *prefs;
 
 ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
@@ -17,6 +15,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     ui->progressBar->setValue(0);
 
     err = 0;
+    killAll = 0;
 
     fp = new QProcess;
 
@@ -58,8 +57,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     QStringList args;
 
-    args << "/c" << "flume.exe" << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
-
+    args << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.insert("PATH", "C:\\bin\\");
@@ -73,16 +71,21 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     fp->waitForFinished();
 
-    fp->setEnvironment(env.toStringList());
-    fp->start("C:\\WINDOWS\\System32\\cmd.exe", args);
-    qDebug() << args;
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ProgressDialog::stop);
 
-    //socketConnect();
+    fp->setEnvironment(env.toStringList());
+    fp->start("C:\\bin\\flume.exe", args);
+}
+
+void ProgressDialog::stop() {
+    qDebug() << "Flume process stopped";
+    fp->kill();
+    returnCode = 200;
+    close();
 }
 
 ProgressDialog::~ProgressDialog()
 {
-    //sshDisconnect();
     delete ui;
 }
 
@@ -122,80 +125,6 @@ ProgressDialog::directFinished(int code, QProcess::ExitStatus exit)
 }
 
 void
-ProgressDialog::socketConnect()
-{
-    if (err != 0) {
-        return;
-    }
-
-    QThread *th = new QThread(this);
-    SshConnect *sc = new SshConnect(0, prefs->value("proxyHostname", "localhost").toString(), prefs->value("proxyPort", "22").toString());
-
-    sc->moveToThread(th);
-
-    connect(th, &QThread::started, sc, &SshConnect::begin);
-    connect(sc, &SshConnect::error, this, &ProgressDialog::fileError);
-    connect(sc, &SshConnect::beat, this, &ProgressDialog::increment);
-    connect(sc, &SshConnect::finished, this, &ProgressDialog::transferConfig);
-
-    th->start();
-}
-
-void
-ProgressDialog::transferConfig()
-{
-    if (err != 0) {
-        return;
-    }
-
-    qDebug() << "Transfering configuration for server" << serverName;
-    ConfigTransfer *ct = new ConfigTransfer(serverName);
-    QThread *th = new QThread;
-
-    ct->moveToThread(th);
-
-    connect(th, &QThread::started, ct, &ConfigTransfer::begin);
-    connect(ct, &ConfigTransfer::error, this, &ProgressDialog::fileError);
-    connect(ct, &ConfigTransfer::finishing, this, &ProgressDialog::startFileTransfer);
-    connect(ct, &ConfigTransfer::beat, this, &ProgressDialog::increment);
-
-    th->start();
-}
-
-void
-ProgressDialog::transferFinished()
-{
-    QMessageBox s;
-    s.setText("File transfer succeded");
-    s.setWindowTitle("Success");
-    s.exec();
-
-    close();
-}
-
-void
-ProgressDialog::startFileTransfer()
-{
-    if (err != 0) {
-        return;
-    }
-
-    qDebug() << "Transfering File: " << fileName;
-
-    FileTransfer *ft = new FileTransfer(NULL, fileName, serverName);
-    QThread *th = new QThread;
-
-    ft->moveToThread(th);
-
-    connect(th, &QThread::started, ft, &FileTransfer::begin);
-    connect(ft, &FileTransfer::beat, this, &ProgressDialog::increment);
-    connect(ft, &FileTransfer::error, this, &ProgressDialog::fileError);
-    connect(ft, &FileTransfer::finished, this, &ProgressDialog::transferFinished);
-
-    th->start();
-}
-
-void
 ProgressDialog::fileError(QString signal)
 {
     err = 1;
@@ -209,20 +138,4 @@ void
 ProgressDialog::increment()
 {
     ui->progressBar->setValue(ui->progressBar->value() + 1);
-}
-
-void
-ProgressDialog::sshDisconnect()
-{
-    qDebug() << "Disconnecting";
-
-    libssh2_session_disconnect(session, "So long, and thanks for all the fish!");
-
-    libssh2_session_free(session);
-
-    libssh2_exit();
-
-    closesocket(sock);
-
-    WSACleanup();
 }

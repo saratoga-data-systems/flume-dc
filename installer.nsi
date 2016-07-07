@@ -1,6 +1,6 @@
 !include "MUI.nsh"
 
-!define NAME "flume_single_gui"
+!define NAME "flume-dc"
 !define COMPANY "Saratoga Data Systems"
 !define INSTDIR "$PROGRAMFILES\${NAME}"
 
@@ -13,7 +13,7 @@ RequestExecutionLevel admin
 Section "Install"
 	SetShellVarContext all
 	SetOutPath ${INSTDIR}
-	File "release\\${NAME}.exe"
+	File "${NAME}.exe"
 	File "vcredist_x64.exe"
 	File "favicon.ico"
 
