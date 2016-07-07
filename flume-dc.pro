@@ -37,8 +37,6 @@ FORMS    += mainwindow.ui \
     serverdialog.ui \
     flumesettings.ui \
     aboutdialog.ui \
-    sshconfig.ui \
-    sshprogress.ui \
     verifyprogress.ui
 
 RESOURCES += \
