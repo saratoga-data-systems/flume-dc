@@ -5,8 +5,7 @@ and execute a point to point file upload.
 
 ### Building
 
-First, this project expects Visual Studio 2013 and an installation of QT to match. 
-It uses the qmake build system. To build using the CLI, simply execute:
+The first step is to install the QT libraries and build tools for your platform. To build using the CLI, simply execute:
 
 ```bash
 qmake
