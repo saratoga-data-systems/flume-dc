@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = "flume-dc"
 TEMPLATE = app
-LIBPATH += "C:\qt-everywhere-opensource-src-5.6.0\qtbase\lib"
 win32: RC_ICONS += favicon.ico
 
 SOURCES += main.cpp\
