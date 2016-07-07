@@ -73,9 +73,6 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     fp->waitForFinished();
 
-    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
-    connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
-
     fp->setEnvironment(env.toStringList());
     fp->start("C:\\WINDOWS\\System32\\cmd.exe", args);
     qDebug() << args;
