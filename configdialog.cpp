@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+ * All Rights Reserved.
+ *
+ * Author: Matthew Voss
+ */
 #include "configdialog.h"
 #include "ui_configdialog.h"
 

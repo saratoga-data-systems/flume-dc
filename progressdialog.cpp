@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+ * All Rights Reserved.
+ *
+ * Author: Matthew Voss
+ */
+/*
+ * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+ * All Rights Reserved.
+ *
+ * Author: Matthew Voss
+ */
 #include "progressdialog.h"
 #include "ui_progressdialog.h"
 

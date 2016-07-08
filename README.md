@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+ * All Rights Reserved.
+ *
+ * Author: Matthew Voss
+ */
+/*
+ * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+ * All Rights Reserved.
+ *
+ * Author: Matthew Voss
+ */
 # Flume DC
 ### Summary
 A graphical frontend for the file transfer program Flume by Saratoga Data Systems. It can adjust all Flume parameters
