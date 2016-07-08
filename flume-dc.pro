@@ -1,9 +1,10 @@
-/*
- * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
- * All Rights Reserved.
- *
- * Author: Matthew Voss
- */
+#-------------------------------------------------
+# Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
+# All Rights Reserved.
+#
+# Author: Matthew Voss
+#-------------------------------------------------
+
 #-------------------------------------------------
 #
 # Project created by QtCreator 2015-12-15T15:56:32

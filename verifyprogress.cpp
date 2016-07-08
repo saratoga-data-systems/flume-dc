@@ -4,12 +4,6 @@
  *
  * Author: Matthew Voss
  */
-/*
- * Copyright (C) 2015-2016 by Saratoga Data Systems, Inc.
- * All Rights Reserved.
- *
- * Author: Matthew Voss
- */
 #include "verifyprogress.h"
 #include "ui_verifyprogress.h"
 
