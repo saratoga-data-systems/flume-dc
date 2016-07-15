@@ -81,9 +81,36 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     fp->setEnvironment(env.toStringList());
     fp->start("C:\\bin\\flume.exe", args);
+    qDebug() << args;
+    connect(fp, &QProcess::errorOccurred, this, &ProgressDialog::stop);
+    connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
+    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
 }
 
 void ProgressDialog::stop() {
+    switch (fp->error()) {
+    case QProcess::FailedToStart:
+        qDebug() << "Error: Failed to Start";
+        break;
+    case QProcess::Crashed:
+        qDebug() << "Error: Flume Crashed";
+        break;
+    case QProcess::Timedout:
+        qDebug() << "QProcess timed out";
+        break;
+    case QProcess::WriteError:
+        qDebug() << "Flume closed it's stdin";
+        break;
+    case QProcess::ReadError:
+        qDebug() << "Flume closed it's stdout";
+        break;
+    case QProcess::UnknownError:
+        qDebug() << "Flume caused an unknown Error";
+        break;
+    default:
+        break;
+    }
+
     qDebug() << "Flume process stopped";
     fp->kill();
     returnCode = 200;

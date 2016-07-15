@@ -80,8 +80,6 @@ FlumeSettings::FlumeSettings(QWidget *parent, QString name) :
     ui->uploadSpeedMaximumEdit->setValidator(new QDoubleValidator);
     ui->verboseEdit->setText(prefs->value(name + "/verbose","false").toString());
     ui->verboseEdit->setValidator(new QRegExpValidator(QRegExp("true|false")));
-    ui->wholeFileEdit_2->setText(prefs->value(name + "/wholeFile", "true").toString());
-    ui->wholeFileEdit_2->setValidator(new QRegExpValidator(QRegExp("true|false")));
 
     connect(ui->pushButton_3, &QPushButton::clicked, this, &FlumeSettings::emitRemove);
     connect(ui->pushButton_4, &QPushButton::clicked, this, &FlumeSettings::reset);
@@ -137,7 +135,6 @@ FlumeSettings::reset()
     ui->timeoutThresholdEdit_2->setText("1");
     ui->uploadSpeedMaximumEdit->setText("10000.00");
     ui->verboseEdit->setText("false");
-    ui->wholeFileEdit_2->setText("true");
 }
 
 void
@@ -228,7 +225,6 @@ FlumeSettings::saveServer()
     prefs->setValue(name + "/timeoutThreshold", ui->timeoutThresholdEdit_2->text());
     prefs->setValue(name + "/uploadSpeedMaximum", ui->uploadSpeedMaximumEdit->text());
     prefs->setValue(name + "/verbose", ui->verboseEdit->text());
-    prefs->setValue(name + "/wholeFile", ui->wholeFileEdit_2->text());
 
     prefs->sync();
 }
