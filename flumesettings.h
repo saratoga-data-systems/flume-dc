@@ -12,6 +12,7 @@
 #include <QSettings>
 #include <QPushButton>
 #include <QValidator>
+#include <QFileDialog>
 
 #include "verifyprogress.h"
 
@@ -34,6 +35,13 @@ public slots:
     void reset();
     void verifyServer();
     void invalidate();
+    void setAllowFileName();
+    void setFlexlmLicenseDirectory();
+    void setLogDirectory();
+    void setPortsFileName();
+    void setSshFileName();
+    void setRunDirectory();
+    void setTempDirectory();
 
 signals:
     void remove(int tabIndex, QString name);
@@ -41,6 +49,7 @@ signals:
 private:
     Ui::FlumeSettings *ui;
     QString serverName;
+    void setUi(QString name);
 };
 
 #endif // FLUMESETTINGS_H
