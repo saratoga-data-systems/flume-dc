@@ -43,6 +43,7 @@ FlumeSettings::FlumeSettings(QWidget *parent, QString name) :
 {
     ui->setupUi(this);
 
+    ui->tabWidget->setCurrentIndex(0);
     serverName = name;
     setUi(name);
 
@@ -111,6 +112,7 @@ FlumeSettings::setUi(QString name)
     connect(ui->pushButton_3, &QPushButton::clicked, this, &FlumeSettings::emitRemove);
     connect(ui->pushButton_4, &QPushButton::clicked, this, &FlumeSettings::reset);
     connect(ui->verifyButton, &QPushButton::clicked, this, &FlumeSettings::verifyServer);
+    connect(ui->summonMethodBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setSummonPort(QString)));
 
     connect(ui->allowFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setAllowFileName);
     connect(ui->flexlmLicenseDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setFlexlmLicenseDirectory);
@@ -124,6 +126,21 @@ FlumeSettings::setUi(QString name)
 FlumeSettings::~FlumeSettings()
 {
     delete ui;
+}
+
+void
+FlumeSettings::setSummonPort(QString text)
+{
+    if (text == "inetd") {
+        ui->summonPortDefaultEdit_2->setText("2354");
+        ui->targetPortEdit->setText("2354");
+    } else if (text == "ssh") {
+        ui->summonPortDefaultEdit_2->setText("22");
+        ui->targetPortEdit->setText("22");
+    } else {
+        ui->summonPortDefaultEdit_2->setText("2354");
+        ui->targetPortEdit->setText("2354");
+    }
 }
 
 void

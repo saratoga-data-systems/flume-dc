@@ -42,6 +42,7 @@ public slots:
     void setSshFileName();
     void setRunDirectory();
     void setTempDirectory();
+    void setSummonPort(QString);
 
 signals:
     void remove(int tabIndex, QString name);
