@@ -129,7 +129,10 @@ FlumeSettings::~FlumeSettings()
 void
 FlumeSettings::setAllowFileName()
 {
-    ui->allowFileNameEdit_2->setText(QFileDialog::getOpenFileName(this, tr("Select File")));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select File"));
+    if (file != "") {
+        ui->allowFileNameEdit_2->setText(file);
+    }
 }
 
 void
@@ -138,7 +141,10 @@ FlumeSettings::setFlexlmLicenseDirectory()
     QFileDialog fd;
     fd.setFileMode(QFileDialog::Directory);
     fd.setOption(QFileDialog::ShowDirsOnly, true);
-    ui->flexlmLicenseDirectoryEdit_2->setText(fd.getExistingDirectory(this, tr("Select Directory")));
+    QString file = fd.getExistingDirectory(this, tr("Select Directory"));
+    if (file != "") {
+        ui->flexlmLicenseDirectoryEdit_2->setText(file);
+    }
 }
 
 void
@@ -147,19 +153,28 @@ FlumeSettings::setLogDirectory()
     QFileDialog fd;
     fd.setFileMode(QFileDialog::Directory);
     fd.setOption(QFileDialog::ShowDirsOnly, true);
-    ui->logDirectoryEdit_2->setText(fd.getExistingDirectory(this, tr("Select Directory")));
+    QString file = fd.getExistingDirectory(this, tr("Select Directory"));
+    if (file != "") {
+        ui->logDirectoryEdit_2->setText(file);
+    }
 }
 
 void
 FlumeSettings::setPortsFileName()
 {
-    ui->portsFileNameEdit_2->setText(QFileDialog::getOpenFileName(this, tr("Select File")));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select File"));
+    if (file != "") {
+        ui->portsFileNameEdit_2->setText(file);
+    }
 }
 
 void
 FlumeSettings::setSshFileName()
 {
-    ui->sshFileNameEdit_2->setText(QFileDialog::getOpenFileName(this, tr("Select File")));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select File"));
+    if (file != "") {
+        ui->sshFileNameEdit_2->setText(file);
+    }
 }
 
 void
@@ -168,7 +183,10 @@ FlumeSettings::setRunDirectory()
     QFileDialog fd;
     fd.setFileMode(QFileDialog::Directory);
     fd.setOption(QFileDialog::ShowDirsOnly, true);
-    ui->runDirectoryEdit_2->setText(fd.getExistingDirectory(this, tr("Select Directory")));
+    QString file = fd.getExistingDirectory(this, tr("Select Directory"));
+    if (file != "") {
+        ui->runDirectoryEdit_2->setText(file);
+    }
 }
 
 void
@@ -177,7 +195,10 @@ FlumeSettings::setTempDirectory()
     QFileDialog fd;
     fd.setFileMode(QFileDialog::Directory);
     fd.setOption(QFileDialog::ShowDirsOnly, true);
-    ui->tempDirectoryEdit_2->setText(fd.getExistingDirectory(this, tr("Select Directory")));
+    QString file = fd.getExistingDirectory(this, tr("Select Directory"));
+    if (file != "") {
+        ui->tempDirectoryEdit_2->setText(file);
+    }
 }
 
 void
