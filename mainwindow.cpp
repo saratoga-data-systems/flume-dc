@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->listView->setModel(fileModel);
     ui->listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    ui->listView->setDragEnabled(false);
     selModel = ui->listView->selectionModel();
 
     connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(addFile()));
@@ -99,6 +100,7 @@ MainWindow::dropEvent(QDropEvent* e)
         // extract the local paths of the files
         for (int i = 0; i < urlList.size(); i++) {
             QFileInfo qi(urlList[i].toLocalFile());
+
             if (qi.isFile()) {
                 QList<QStandardItem*> row;
                 row.append(new QStandardItem(urlList[i].toLocalFile()));
@@ -190,10 +192,10 @@ MainWindow::addFile()
 
     qDebug() << "Loading files: " << files;
     for (int i = 0; i < files.size(); i++) {
-        QList<QStandardItem*> row;
-        row.append(new QStandardItem(files[i]));
-        row.append(new QStandardItem("Ready"));
-        fileModel->appendRow(row);
+           QList<QStandardItem*> row;
+           row.append(new QStandardItem(files[i]));
+           row.append(new QStandardItem("Ready"));
+           fileModel->appendRow(row);
     }
 
     ui->listView->resizeColumnToContents(0);
