@@ -61,6 +61,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->removeButton, &QPushButton::clicked, this, &MainWindow::removeFile);
     connect(selModel, &QItemSelectionModel::currentChanged, this, &MainWindow::ungrey);
     connect(ui->actionLoad_Destinations, SIGNAL(triggered(bool)), this, SLOT(loadConfig()));
+
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -69,6 +71,44 @@ MainWindow::~MainWindow()
     prefs->sync();
 
     delete ui;
+}
+
+void
+MainWindow::dragEnterEvent(QDragEnterEvent* e)
+{
+    e->acceptProposedAction();
+}
+
+void
+MainWindow::dragLeaveEvent(QDragLeaveEvent* e)
+{
+    e->accept();
+}
+
+void
+MainWindow::dropEvent(QDropEvent* e)
+{
+    e->acceptProposedAction();
+
+    const QMimeData* mime = e->mimeData();
+
+    if (mime->hasUrls()) {
+        qDebug() << "Drop event with URLS";
+        QList<QUrl> urlList = mime->urls();
+
+        // extract the local paths of the files
+        for (int i = 0; i < urlList.size(); i++) {
+            QFileInfo qi(urlList[i].toLocalFile());
+            if (qi.isFile()) {
+                QList<QStandardItem*> row;
+                row.append(new QStandardItem(urlList[i].toLocalFile()));
+                row.append(new QStandardItem("Ready"));
+                fileModel->appendRow(row);
+                ui->listView->resizeColumnToContents(0);
+            }
+        }
+    }
+
 }
 
 void

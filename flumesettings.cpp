@@ -47,6 +47,19 @@ FlumeSettings::FlumeSettings(QWidget *parent, QString name) :
     serverName = name;
     setUi(name);
 
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &FlumeSettings::emitRemove);
+    connect(ui->pushButton_4, &QPushButton::clicked, this, &FlumeSettings::reset);
+    connect(ui->verifyButton, &QPushButton::clicked, this, &FlumeSettings::verifyServer);
+    connect(ui->summonMethodBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setSummonPort(QString)));
+
+    connect(ui->allowFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setAllowFileName);
+    connect(ui->flexlmLicenseDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setFlexlmLicenseDirectory);
+    connect(ui->logDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setLogDirectory);
+    connect(ui->portsFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setPortsFileName);
+    connect(ui->sshFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setSshFileName);
+    connect(ui->runDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setRunDirectory);
+    connect(ui->tempDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setTempDirectory);
+
     setWindowTitle("Edit Target List");
 }
 
@@ -108,19 +121,6 @@ FlumeSettings::setUi(QString name)
     ui->uploadSpeedMaximumEdit->setText(prefs->value(name + "/uploadSpeedMaximum","10000.00").toString());
     ui->uploadSpeedMaximumEdit->setValidator(new QDoubleValidator);
     setCheckbox(ui->verboseBox, name, "/verbose");
-
-    connect(ui->pushButton_3, &QPushButton::clicked, this, &FlumeSettings::emitRemove);
-    connect(ui->pushButton_4, &QPushButton::clicked, this, &FlumeSettings::reset);
-    connect(ui->verifyButton, &QPushButton::clicked, this, &FlumeSettings::verifyServer);
-    connect(ui->summonMethodBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setSummonPort(QString)));
-
-    connect(ui->allowFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setAllowFileName);
-    connect(ui->flexlmLicenseDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setFlexlmLicenseDirectory);
-    connect(ui->logDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setLogDirectory);
-    connect(ui->portsFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setPortsFileName);
-    connect(ui->sshFileNameBrowse, &QPushButton::clicked, this, &FlumeSettings::setSshFileName);
-    connect(ui->runDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setRunDirectory);
-    connect(ui->tempDirectoryBrowse, &QPushButton::clicked, this, &FlumeSettings::setTempDirectory);
 }
 
 FlumeSettings::~FlumeSettings()

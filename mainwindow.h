@@ -18,6 +18,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include <QItemSelectionModel>
+#include <QMimeData>
 
 #include "progressdialog.h"
 #include "serverdialog.h"
@@ -42,6 +43,11 @@ private:
     QItemSelectionModel *selModel;
     void updateTargetList();
     void loadConfigFile(QString file);
+
+protected:
+    void dropEvent(QDropEvent* e);
+    void dragEnterEvent(QDragEnterEvent* e);
+    void dragLeaveEvent(QDragLeaveEvent* e);
 
 public slots:
     void addFile();
