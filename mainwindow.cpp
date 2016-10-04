@@ -232,7 +232,7 @@ MainWindow::removeFile()
 void
 MainWindow::sendAll()
 {
-    if (!QFile::exists("C:\\bin\\flume.exe")) {
+    if (!QFile::exists("C:\\Flume\\bin\\flume.exe")) {
         QMessageBox msg;
         msg.setText("Please install Flume, then retry the transfer.");
         msg.setWindowTitle("Flume DC Error");
