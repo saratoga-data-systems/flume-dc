@@ -2,7 +2,7 @@
 
 !define NAME "flume-dc"
 !define COMPANY "Saratoga Data Systems"
-!define INSTDIR "$PROGRAMFILES\${NAME}"
+!define INSTDIR "C:\Flume\bin\${NAME}"
 
 Icon "favicon.ico"
 

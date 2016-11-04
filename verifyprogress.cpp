@@ -30,7 +30,7 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
 
     QStringList configuration = prefs->allKeys();
 
-    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString appDataPath = "C:\\Flume\\etc";
     QString flumeConfigPath = appDataPath + "/flumeConfig";
     QFile outfile(flumeConfigPath);
 
@@ -69,10 +69,10 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
     qDebug() << args;
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("PATH", "C:\\bin\\");
+    env.insert("PATH", "C:\\Flume\\bin\\");
 
     fp->setEnvironment(env.toStringList());
-    fp->start("C:\\bin\\flume_validate.exe", args);
+    fp->start("C:\\Flume\\bin\\flume_validate.exe", args);
 }
 
 VerifyProgress::~VerifyProgress()

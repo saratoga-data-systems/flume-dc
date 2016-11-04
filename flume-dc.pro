@@ -44,6 +44,3 @@ FORMS    += mainwindow.ui \
     flumesettings.ui \
     aboutdialog.ui \
     verifyprogress.ui
-
-RESOURCES += \
-    winicon.qrc

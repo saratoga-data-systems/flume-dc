@@ -13,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    qDebug() << "Flume DC 0.1";
+    qDebug() << "Flume DC 0.3";
     qDebug() << "(C) Saratoga Data 2013-2016 All Rights Reserved";
 
-    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString appDataPath = "C:\\Flume\\etc";
     prefs = new QSettings(appDataPath + "/flumeGuiConfig.ini", QSettings::IniFormat);
 
     if (prefs->value("proxyHostname").toString() == "") {

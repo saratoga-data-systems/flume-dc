@@ -29,7 +29,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     QStringList configuration = prefs->allKeys();
 
-    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString appDataPath = "C:\\Flume\\etc";
     QString flumeConfigPath = appDataPath + "/flumeConfig";
     QFile outfile(flumeConfigPath);
 
@@ -66,7 +66,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     args << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("PATH", "C:\\bin\\");
+    env.insert("PATH", "C:\\Flume\\bin\\");
 
     QStringList sargs;
     sargs << "/c" << "ssh.exe" << "-o" << "StrictHostKeyChecking=no" << "-p" << prefs->value(name + "/targetPort", "22").toString() << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() << "exit";
@@ -80,7 +80,7 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ProgressDialog::stop);
 
     fp->setEnvironment(env.toStringList());
-    fp->start("C:\\bin\\flume.exe", args);
+    fp->start("C:\\Flume\\bin\\flume.exe", args);
     qDebug() << args;
     connect(fp, &QProcess::errorOccurred, this, &ProgressDialog::stop);
     connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
