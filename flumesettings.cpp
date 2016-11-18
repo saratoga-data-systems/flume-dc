@@ -69,7 +69,7 @@ FlumeSettings::setUi(QString name)
     ui->targetNameEdit->setText(name);
     ui->targetHostnameEdit->setText(prefs->value(name + "/targetHostname", "localhost").toString());
     ui->targetUsernameEdit->setText(prefs->value(name + "/targetUsername", "flumer").toString());
-    ui->targetDirectoryEdit->setText(prefs->value(name + "/targetDirectory", "/tmp").toString());
+    ui->targetDirectoryEdit->setText(prefs->value(name + "/targetDirectory", "C:\\Flume\\tmp").toString());
     ui->targetPortEdit->setText(prefs->value(name + "/targetPort", "22").toString());
     ui->targetPortEdit->setValidator(new QIntValidator(0,65535));
     setCombobox(ui->summonMethodBox, name, "/summonMethod");
@@ -77,14 +77,14 @@ FlumeSettings::setUi(QString name)
     ui->MTUEdit_2->setText(prefs->value(name + "/MTU", "1500").toString());
     ui->MTUEdit_2->setValidator(new QIntValidator(68,8192));
     ui->allowFileNameEdit_2->setText(prefs->value(name + "/allowFileName","C:\\Flume\\etc\\allow").toString());
-    setCombobox(ui->checksumSpecBox, name, "/checksumSpec");
+    //setCombobox(ui->checksumSpecBox, name, "/checksumSpec");
     setSpinbox(ui->compressionLevelBox, name, "/compressionLevel");
-    setCombobox(ui->compressionStrategyBox, name, "/compressionStrategy");
+    //setCombobox(ui->compressionStrategyBox, name, "/compressionStrategy");
     setSpinbox(ui->debugBox, name, "/debug");
     ui->derivativePidFactorEdit_2->setText(prefs->value(name + "/derivativePIDfactor", "0.050000").toString());
     ui->derivativePidFactorEdit_2->setValidator(new QDoubleValidator);
     ui->flexlmLicenseDirectoryEdit_2->setText(prefs->value(name + "/flexlmLicenseDirectory", "C:\\Flume\\etc\\license").toString());
-    setCombobox(ui->hashSpecBox, name, "/hashSpec");
+    //setCombobox(ui->hashSpecBox, name, "/hashSpec");
     ui->initSpeedFactorEdit_2->setText(prefs->value(name + "/initSpeedFactor", "100").toString());
     ui->initSpeedFactorEdit_2->setValidator(new QIntValidator);
     ui->integralPidFactorEdit_2->setText(prefs->value(name + "/integralPIDfactor", "0.000000").toString());
@@ -115,7 +115,7 @@ FlumeSettings::setUi(QString name)
     ui->synIntervalEdit_2->setValidator(new QIntValidator);
     ui->targetErrorBasisPointsEdit_2->setText(prefs->value(name + "/targetErrorBasisPoints", "200").toString());
     ui->targetErrorBasisPointsEdit_2->setValidator(new QIntValidator);
-    ui->tempDirectoryEdit_2->setText(prefs->value(name + "/tempDirectory","/tmp").toString());
+    ui->tempDirectoryEdit_2->setText(prefs->value(name + "/tempDirectory","C:\\Flume\\tmp").toString());
     ui->timeoutThresholdEdit_2->setText(prefs->value(name + "/timeoutThreshold","1").toString());
     ui->timeoutThresholdEdit_2->setValidator(new QIntValidator);
     ui->uploadSpeedMaximumEdit->setText(prefs->value(name + "/uploadSpeedMaximum","10000.00").toString());
@@ -223,7 +223,7 @@ FlumeSettings::reset()
 {
     ui->targetHostnameEdit->setText("localhost");
     ui->targetUsernameEdit->setText("flumer");
-    ui->targetDirectoryEdit->setText("/tmp");
+    ui->targetDirectoryEdit->setText("C:\\Flume\\tmp");
     ui->targetPortEdit->setText("22");
     int i = ui->summonMethodBox->findText("inetd");
     ui->summonMethodBox->setCurrentIndex(i);
@@ -261,7 +261,7 @@ FlumeSettings::reset()
     ui->recurseBox->setChecked(false);
     ui->synIntervalEdit_2->setText("100");
     ui->targetErrorBasisPointsEdit_2->setText("200");
-    ui->tempDirectoryEdit_2->setText("/tmp");
+    ui->tempDirectoryEdit_2->setText("C:\\Flume\\tmp");
     ui->timeoutThresholdEdit_2->setText("1");
     ui->uploadSpeedMaximumEdit->setText("10000.00");
     ui->verboseBox->setChecked(false);
@@ -288,7 +288,7 @@ FlumeSettings::emitRemove()
 void
 FlumeSettings::verifyServer()
 {
-    if (!QFile::exists("C:\\bin\\flume_validate.exe")) {
+    if (!QFile::exists("C:\\Flume\\bin\\flume_validate.exe")) {
         QMessageBox msg;
         msg.setWindowTitle("Flume DC Error");
         msg.setText("Please install Flume and try again.");

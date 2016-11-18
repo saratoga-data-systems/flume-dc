@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    qDebug() << "Flume DC 0.3";
+    qDebug() << "Flume DC 0.4";
     qDebug() << "(C) Saratoga Data 2013-2016 All Rights Reserved";
 
     QString appDataPath = "C:\\Flume\\etc";
@@ -271,7 +271,7 @@ MainWindow::sendAll()
 
     QDateTime dt(QDateTime::currentDateTime().toUTC());
     fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[2], QVariant(dt.toString("yyyy-MM-dd hh:mm Z")));
-    if (pd.returnValue() >= 200) {
+    if (pd.returnValue() < 0) {
         fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[1], QVariant("FAILED"));
     } else {
         fileModel->setData(ui->listView->selectionModel()->selectedIndexes()[1], QVariant("SUCCEEDED"));
