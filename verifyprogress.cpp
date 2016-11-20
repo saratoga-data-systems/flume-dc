@@ -23,7 +23,8 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
     ui->progressBar->setValue(0);
 
     fp = new QProcess;
-    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
+    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this,
+                SLOT(directFinished(int, QProcess::ExitStatus)));
     connect(fp, &QProcess::readyReadStandardError, this, &VerifyProgress::printOutput);
 
     prefs->beginGroup(serverName);
@@ -64,7 +65,9 @@ VerifyProgress::VerifyProgress(QWidget *parent, QString name) :
 
     QStringList args;
 
-    args << "-f" << flumeConfigPath.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString();
+    args << "-f" << flumeConfigPath.replace("/", "\\")
+         << prefs->value(name + "/targetUsername", "flumer").toString()
+            + "@" + prefs->value(name + "/targetHostname", "localhost").toString();
 
     qDebug() << args;
 

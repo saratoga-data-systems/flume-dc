@@ -63,13 +63,24 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
 
     QStringList args;
 
-    args << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","") << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString() + ":" + prefs->value(name + "/targetPort", "22").toString() << file.replace("/", "\\") << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
+    args << "-f" << flumeConfigPath.replace("/", "\\").replace("C:","")
+         << "-summon" << prefs->value(name + "/summonMethod", "ssh").toString()
+                      + ":" + prefs->value(name + "/targetPort", "22").toString()
+         << file.replace("/", "\\")
+         << prefs->value(name + "/targetUsername", "flumer").toString()
+            + "@" + prefs->value(name + "/targetHostname", "localhost").toString()
+            + ":" + prefs->value(name + "/targetDirectory", "/tmp").toString();
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.insert("PATH", "C:\\Flume\\bin\\");
 
     QStringList sargs;
-    sargs << "/c" << "ssh.exe" << "-o" << "StrictHostKeyChecking=no" << "-p" << prefs->value(name + "/targetPort", "22").toString() << prefs->value(name + "/targetUsername", "flumer").toString() + "@" + prefs->value(name + "/targetHostname", "localhost").toString() << "exit";
+    sargs << "/c" << "ssh.exe"
+          << "-o" << "StrictHostKeyChecking=no"
+          << "-p" << prefs->value(name + "/targetPort", "22").toString()
+          << prefs->value(name + "/targetUsername", "flumer").toString()
+             + "@" + prefs->value(name + "/targetHostname", "localhost").toString()
+          << "exit";
 
     fp->setEnvironment(env.toStringList());
     fp->start("C:\\WINDOWS\\System32\\cmd.exe", sargs);
@@ -84,7 +95,8 @@ ProgressDialog::ProgressDialog(QWidget *parent, QString name, QString file) :
     qDebug() << args;
     connect(fp, &QProcess::errorOccurred, this, &ProgressDialog::stop);
     connect(fp, &QProcess::readyReadStandardError, this, &ProgressDialog::printOutput);
-    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(directFinished(int, QProcess::ExitStatus)));
+    connect(fp, SIGNAL(finished(int, QProcess::ExitStatus)), this,
+                SLOT(directFinished(int, QProcess::ExitStatus)));
 }
 
 void ProgressDialog::stop() {

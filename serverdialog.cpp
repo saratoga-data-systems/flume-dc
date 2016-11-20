@@ -58,7 +58,10 @@ void ServerDialog::addTarget()
     QString name;
 
     do {
-        name = QInputDialog::getText(this, tr("Question"), tr("Please enter the a name for your destination."), QLineEdit::Normal, QString(), &ok);
+        name = QInputDialog::getText(this,
+                                     tr("Question"),
+                                     tr("Please enter the a name for your destination."),
+                                     QLineEdit::Normal, QString(), &ok);
     } while(name == "" && ok);
 
     if (ok) {
