@@ -113,7 +113,7 @@ void ProgressDialog::stop() {
 
     qDebug() << "Flume process stopped";
     fp->kill();
-    returnCode = 200;
+    returnCode = -41; // flag as aborted
     close();
 }
 
@@ -136,12 +136,12 @@ ProgressDialog::returnValue()
 }
 
 void
-ProgressDialog::directFinished(int code, QProcess::ExitStatus exit)
+ProgressDialog::directFinished(int code, QProcess::ExitStatus /* exit */)
 {
         QMessageBox msg;
         QString error;
 
-        if (code >= 200) {
+        if (code < 0) {
             error = "File Not Transferred";
         } else {
             error = "File Transferred";

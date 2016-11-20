@@ -94,12 +94,12 @@ VerifyProgress::printOutput()
 }
 
 void
-VerifyProgress::directFinished(int code, QProcess::ExitStatus exit)
+VerifyProgress::directFinished(int code, QProcess::ExitStatus /* exit */)
 {
         QString error("Configuration for destination ");
         error += serverName;
 
-        if (code >= 200) {
+        if (code < 0) {
             emit invalid();
             error += " is invalid.";
         } else {
