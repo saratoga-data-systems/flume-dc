@@ -4,6 +4,7 @@
  *
  * Author: Matthew Voss
  */
+
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
