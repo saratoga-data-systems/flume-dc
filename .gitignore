@@ -1,2 +1,8 @@
 flume-dc.pro.user
+moc_*
+ui_*.h
+Makefile
+*.o
+.qmake.stash
+flume-dc
 *~
